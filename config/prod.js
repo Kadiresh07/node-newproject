@@ -6,5 +6,5 @@ module.exports ={
     googleClientSecret :process.env.GOOGLE_CLIENT_SECRET,
     mongoUrl:process.env.MONGO_URI,
     cookieKey:process.env.COOKIE_KEY,
-    googleRedirectURI:"http://localhost:3000"
-};
+     googleRedirectURI: "https://node-newproject.onrender.com"
+}
