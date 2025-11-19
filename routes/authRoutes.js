@@ -17,17 +17,20 @@ module.exports = (app) => {
       res.send("Logged in successfully");
     }
   );
+  // 3. Get logged-in user info
+  app.get("/api/current_user", (req, res) => {
+    res.send(req.user); // this works if user is logged in
+  });
+
+  // 4. Logout
+  app.get("/api/logout", (req, res) => {
+    req.logout(() => {
+      res.redirect("/");
+    });
+  });
 
 
-  // Profile page
-app.get("/profile", (req, res) => {
-  if (!req.user) return res.redirect("/auth/google");
-  res.send(`
-    <h1>Hello ${req.user.displayName}</h1>
-    <p>Email: ${req.user.emails[0].value}</p>
-    <img src="${req.user.photos[0].value}" alt="profile pic"/>
-  `);
-});
+
 
 
   // // Logout user

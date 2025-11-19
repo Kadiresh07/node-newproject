@@ -5,7 +5,6 @@ require("dotenv").config();
 
 
 
-
 // serialize/deserialize
 passport.serializeUser((user, done) => {
   done(null, user);
@@ -29,6 +28,10 @@ passport.use(
     },
     (accessToken, refreshToken, profile, done) => {
         console.log("Google Profile:", profile);
+        console.log('refresh token',refreshToken);
+        console.log('Access token', accessToken)
+
+
       done(null, profile);
   
     }

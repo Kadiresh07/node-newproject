@@ -1,7 +1,9 @@
+require("dotenv").config(); 
+
 const express = require("express");
-const passport = require("passport");
+const passport = require("./services/passport");
 const cookieSession = require("cookie-session");
-require("dotenv").config(); // load .env
+// load .env
 
 const app = express();
 
@@ -66,4 +68,9 @@ app.get("/", (req, res) => {
   res.send({ Hi: "kadiresh" });
 });
 
-app.listen(3000, () => console.log("Server started"));
+
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});
