@@ -2,7 +2,7 @@ const express = require("express");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const passport = require("passport");
 const cookieSession = require("cookie-session");
-const keys = require("./config/keys");
+require("dotenv").config(); // load .env
 
 const app = express();
 
@@ -34,13 +34,12 @@ passport.deserializeUser((obj, done) => {
 passport.use(
   new GoogleStrategy(
     {
-      clientID: keys.googleClientID,
-      clientSecret: keys.googleClientSecret,
+      clientID: process.env.googleClientID,
+      clientSecret: process.env.googleClientSecret,
       callbackURL:
-        "https://villiform-unschematised-bill.ngrok-free.dev/auth/google/callback",
+        process.env.googleRedirectURI,
     },
     (accessToken, refreshToken, profile, done) => {
-      console.log("Google Profile:", profile);
       done(null, profile);
     }
   )
